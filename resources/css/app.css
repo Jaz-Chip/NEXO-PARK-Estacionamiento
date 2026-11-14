@@ -1,0 +1,231 @@
+/* Tabler includes the Bootstrap 5 grid, utilities and components.
+   Do not import a second Bootstrap stylesheet or Tailwind reset. */
+@import './bootstrap-foundation.css';
+@import 'sweetalert2/dist/sweetalert2.min.css';
+@import 'datatables.net-bs5/css/dataTables.bootstrap5.css';
+
+body { min-height: 100vh; }
+.parking-document { overflow-wrap: anywhere; }
+.report-chart { position: relative; height: 280px; min-width: 0; }
+#report-content[aria-busy="true"] { opacity: .65; pointer-events: none; }
+@media print {
+    body.printing-operation > * { display: none !important; }
+    body.printing-operation .page { display: block !important; }
+    body.printing-operation .page > :not(.page-wrapper) { display: none !important; }
+    body.printing-operation .page-wrapper { margin: 0 !important; padding: 0 !important; }
+    body.printing-operation .page-wrapper > :not(.page-body) { display: none !important; }
+    body.printing-operation .page-body, body.printing-operation .container-fluid { margin: 0 !important; padding: 0 !important; }
+    body.printing-operation #operations-page,
+    body.printing-operation .modal:not(#print-modal),
+    body.printing-operation #print-modal .modal-header,
+    body.printing-operation #print-modal .modal-footer { display: none !important; }
+    body.printing-operation #print-modal { position: static !important; display: block !important; overflow: visible !important; opacity: 1 !important; }
+    body.printing-operation #print-modal .modal-dialog { transform: none !important; margin: 0 auto !important; max-width: 90mm; }
+    body.printing-operation #print-modal .modal-content { border: 0; box-shadow: none; }
+}
+.navbar-brand { font-weight: 700; }
+.parking-admin .page { min-height: 100vh; }
+.parking-admin .page-wrapper { min-width: 0; }
+.parking-admin .navbar-brand { white-space: normal; }
+.parking-admin .module-pending { cursor: default; opacity: .65; }
+.module-pending-label { margin-inline-start: auto; font-size: .625rem; }
+.sidebar-note { background: rgba(255, 255, 255, .06); color: #b8c4d4; }
+.stat-card .card-body { min-width: 0; }
+.stat-label { font-size: .875rem; font-weight: 500; line-height: 1.5; margin-bottom: .5rem; }
+.stat-value { font-size: clamp(1.35rem, 2vw, 2rem); font-weight: 600; line-height: 1.25; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.stat-card .stat-label { overflow-wrap: normal; word-break: normal; }
+.dt-container .dt-layout-row { gap: .75rem; }
+.dt-container .dt-search input { margin-left: .5rem; }
+.table-responsive { min-height: 11rem; }
+#permissions-options .form-check-input { cursor: pointer; }
+#permissions-options:disabled .form-check-input { cursor: default; }
+@media (min-width: 992px) {
+    .parking-admin #sidebar-menu { flex-direction: column; }
+}
+
+
+/* Identidad visual del sistema: navegación y vistas, sin alterar el motor Laravel. */
+:root { --app-radius: 18px; }
+.variant-warm, .variant-dark, .variant-soft { font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif; }
+.variant-warm a, .variant-dark a, .variant-soft a { text-decoration: none; }
+.variant-warm .card, .variant-dark .card, .variant-soft .card { border-radius: var(--app-radius); }
+.variant-warm .btn, .variant-dark .btn, .variant-soft .btn { border-radius: 10px; }
+.variant-warm .form-control, .variant-dark .form-control, .variant-soft .form-control,
+.variant-warm .form-select, .variant-dark .form-select, .variant-soft .form-select { border-radius: 9px; }
+.login-layout { min-height: 100vh; display: grid; grid-template-columns: 1.12fr 1fr; }
+.login-story { padding: clamp(36px, 7vw, 110px); display: flex; flex-direction: column; justify-content: center; }
+.login-story h1 { font-size: clamp(3.8rem, 6vw, 6.5rem); font-weight: 800; letter-spacing: -.065em; line-height: .96; margin: 16px 0 22px; }
+.login-story p { max-width: 440px; font-size: 1.1rem; line-height: 1.6; }
+.login-mark { width: 60px; height: 60px; border-radius: 17px; display: grid; place-items: center; font-size: 1.25rem; font-weight: 800; }
+.login-story .login-subtitle { font-size: .73rem; letter-spacing: .16em; font-weight: 700; margin-top: 26px; }
+.login-motif { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 70px; }
+.login-motif span { border: 1px solid currentColor; padding: 7px 12px; border-radius: 50px; font-size: .7rem; letter-spacing: .08em; }
+.login-box { display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 30px; }
+.login-box form.card { width: min(430px, 100%); box-shadow: 0 28px 75px rgba(19,38,47,.09); }
+.login-box .card-body { padding: clamp(25px, 4vw, 46px); }
+.login-box h2 { font-size: 2rem; font-weight: 700; margin: 8px 0; letter-spacing: -.04em; }
+.login-eyebrow { font-size: .73rem; font-weight: 800; letter-spacing: .13em; }
+.login-support { margin-top: 22px; font-size: .8rem; text-align: center; opacity: .7; }
+.quick-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.quick-actions .btn { font-weight: 700; }
+.section-kicker { font-size: .72rem; font-weight: 800; letter-spacing: .12em; }
+.variant-warm .dt-container, .variant-dark .dt-container, .variant-soft .dt-container { max-width: 100%; }
+.variant-warm .table-responsive, .variant-dark .table-responsive, .variant-soft .table-responsive { overflow-x: auto; }
+@media(max-width:900px) { .login-layout { grid-template-columns:1fr; } .login-story { padding: 40px 30px 18px; } .login-story h1 { font-size: 3.3rem; } .login-motif { margin-top: 25px; } .login-box { padding: 20px 25px 45px; } }
+
+
+/* NEXO PARK: consola nocturna, panel lateral y acentos lima/cian. */
+.variant-dark { --tblr-primary:#57ded4; --tblr-primary-rgb:87,222,212; background:#0b141c; color:#e8f3f3; --tblr-body-color:#e8f3f3; --tblr-secondary-color:#91a6af; }
+.variant-dark .console-shell { min-height:100vh; display:flex; }
+.variant-dark .console-rail { width:252px; flex:0 0 252px; position:sticky; top:0; height:100vh; overflow-y:auto; background:#0d1c27; border-right:1px solid #263a44; display:flex; flex-direction:column; padding:24px 15px; }
+.variant-dark .console-brand { display:flex; gap:12px; align-items:center; margin:1px 8px 34px; color:#f0fcfc; }
+.variant-dark .console-brand-mark { width:46px; height:46px; border-radius:13px; display:grid; place-items:center; background:#72ede0; color:#0c1a20; font-weight:900; }
+.variant-dark .console-brand strong { display:block; letter-spacing:.12em; font-weight:900; font-size:1.05rem; }
+.variant-dark .console-brand small { display:block; color:#7795a0; font-size:.7rem; }
+.variant-dark .console-rail-sub { color:#627f8b; font-weight:800; font-size:.65rem; letter-spacing:.15em; margin:5px 12px 12px; }
+.variant-dark .console-rail-scroll { flex:1; }
+.variant-dark .rail-links { display:flex; flex-direction:column; gap:5px; }
+.variant-dark .rail-home,.variant-dark .rail-link { padding:10px 12px; color:#91a8b2; border-radius:9px; display:flex; align-items:center; gap:10px; font-size:.84rem; }
+.variant-dark .rail-home:hover,.variant-dark .rail-link:hover { color:#f0ffff; background:#183341; }
+.variant-dark .rail-home.is-current,.variant-dark .rail-link.is-current { color:#0a1d24; background:#71e2d7; font-weight:800; }
+.variant-dark .rail-symbol { font-size:1.1rem; }
+.variant-dark .rail-caption { color:#6e9197; font-size:.65rem; letter-spacing:.13em; text-transform:uppercase; font-weight:900; margin:20px 12px 7px; }
+.variant-dark .rail-dot { flex:0 0 5px; height:5px; width:5px; border-radius:50%; background:currentColor; opacity:.7; }
+.variant-dark .console-footer { color:#91b3ae; padding:12px; border:1px solid #25434c; border-radius:9px; font-size:.68rem; letter-spacing:.12em; margin-top:18px; }
+.variant-dark .live-pulse { display:inline-block; height:7px; width:7px; background:#b5ed78; border-radius:50%; margin-left:10px; }
+.variant-dark .console-main { flex:1; min-width:0; display:flex; flex-direction:column; }
+.variant-dark .console-topbar { min-height:83px; padding:15px 32px; display:flex; justify-content:space-between; gap:20px; align-items:center; background:#111e28; border-bottom:1px solid #273943; }
+.variant-dark .console-topbar>div:first-child { display:flex; flex-direction:column; gap:3px; }
+.variant-dark .console-top-label { color:#83a3ad; font-size:.68rem; letter-spacing:.13em; }
+.variant-dark .console-topbar strong { font-size:1.1rem; }
+.variant-dark .console-user { display:flex; gap:15px; align-items:center; }
+.variant-dark .identity { display:flex; flex-direction:column; font-size:.84rem; }
+.variant-dark .identity small { color:#7c98a3; }
+.variant-dark .console-work { width:100%; max-width:1540px; margin:auto; padding:38px 37px; flex:1; }
+.variant-dark .console-page-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:26px; gap:15px; }
+.variant-dark .console-page-head h1 { font-size:clamp(2rem,3.2vw,3rem); letter-spacing:-.055em; color:#f0fcfc; margin:4px 0; }
+.variant-dark .console-page-head p { color:#859fa7; margin:0; }
+.variant-dark .console-kicker { font-size:.7rem; font-weight:800; letter-spacing:.13em; color:#71e2d7 !important; }
+.variant-dark .console-chips { font-size:.72rem; color:#b5ed78; border:1px solid #385849; padding:10px 14px; border-radius:50px; white-space:nowrap; }
+.variant-dark .console-bottom { padding:13px 35px; border-top:1px solid #283a43; color:#70909b; font-size:.72rem; display:flex; justify-content:space-between; }
+.variant-dark .card,.variant-dark .modal-content { background:#152630; border:1px solid #293e48; color:#e8f3f3; }
+.variant-dark .card-header { border-bottom-color:#2a434c; }
+.variant-dark .card-title,.variant-dark .modal-title { color:#e8f3f3; }
+.variant-dark .text-secondary { color:#91a7ae !important; }
+.variant-dark .table { --tblr-table-color:#e5f4f5; --tblr-table-bg:#152630; --tblr-table-border-color:#2c424c; --tblr-table-striped-bg:#1c313c; }
+.variant-dark .table thead { color:#a4c4ca; }
+.variant-dark .form-control,.variant-dark .form-select { background-color:#101e27; border-color:#314d57; color:#efffff; }
+.variant-dark .form-control:focus,.variant-dark .form-select:focus { background-color:#102330; border-color:#57ded4; color:white; }
+.variant-dark .btn-primary { background:#6ee1d7; border-color:#6ee1d7; color:#0b1f26; font-weight:800; }
+.variant-dark .btn-primary:hover { background:#a2f4eb; border-color:#a2f4eb; color:#0b1f26; }
+.variant-dark .btn-outline-primary { color:#7ae9df; border-color:#476b74; }
+.variant-dark .btn-outline-primary:hover { background:#244c52; color:#f1ffff; }
+.variant-dark .btn-outline-secondary { color:#bed5d8; border-color:#3f5a63; }
+.variant-dark .btn-outline-secondary:hover { background:#2a414c; color:white; }
+.variant-dark .btn-close { filter:invert(1); }
+.variant-dark .console-intro { background:linear-gradient(112deg,#193946,#173140); border:1px solid #3a5e64; border-radius:20px; padding:34px; display:flex; justify-content:space-between; align-items:center; gap:20px; }
+.variant-dark .console-intro-tag { color:#b8ea7c; font-size:.7rem; letter-spacing:.12em; font-weight:800; }
+.variant-dark .console-intro-tag>span { display:inline-block; width:7px; height:7px; background:#b8ea7c; border-radius:50%; margin-right:6px; }
+.variant-dark .console-intro h2 { color:#f0ffff; font-size:2.7rem; margin:10px 0 8px; letter-spacing:-.05em; }
+.variant-dark .console-intro p { color:#9fbbc1; margin:0; }
+.variant-dark .console-intro-right { width:220px; flex:0 0 220px; }
+.variant-dark .console-intro-right span { font-size:.7rem; font-weight:800; color:#96c6c7; letter-spacing:.1em; }
+.variant-dark .console-intro-right strong { display:block; color:#b8ed7e; font-size:3.3rem; }
+.variant-dark .progress { background:#35515d; }
+.variant-dark .progress-bar { background:#b8ed7e; }
+.variant-dark .console-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:13px; margin:20px 0; }
+.variant-dark .console-kpi { padding:25px 22px; background:#142731; border:1px solid #2b424a; border-radius:15px; }
+.variant-dark .kpi-top { display:flex; justify-content:space-between; color:#88b4bb; font-size:.67rem; letter-spacing:.1em; }
+.variant-dark .console-kpi strong { display:block; font-size:clamp(1.4rem,2.3vw,2.4rem); color:#f6ffff; font-weight:800; margin:20px 0 7px; overflow-wrap:anywhere; }
+.variant-dark .console-kpi h3 { margin:0; font-size:.93rem; color:#98b5bb; }
+.variant-dark .console-actions { display:flex; justify-content:space-between; align-items:center; gap:25px; background:#142731; border:1px solid #2b424a; border-radius:15px; padding:26px; margin-bottom:20px; }
+.variant-dark .console-actions h3 { margin:0 0 5px; color:#eaf9f8; }
+.variant-dark .console-actions p { margin:0; color:#8faab1; }
+.variant-dark .console-actions .quick-actions { margin:0; }
+.variant-dark .console-compact { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.variant-dark .console-compact>div { padding:22px; border:1px solid #263f48; border-radius:13px; }
+.variant-dark .console-compact>div span,.variant-dark .console-compact>div small { display:block; color:#7998a2; font-size:.7rem; letter-spacing:.08em; }
+.variant-dark .console-compact>div strong { display:block; color:#b8ed7e; font-size:1.65rem; margin:7px 0; }
+.variant-dark .login-story { background:#102632; color:#ebfbf9; }
+.variant-dark .login-story .login-mark { color:#0b1822; background:#b8ed7e; }
+.variant-dark .login-story .login-subtitle { color:#92c4be; }
+.variant-dark .login-box { background:#0b141c; }
+.variant-dark .login-box form.card { background:#162a36; }
+.variant-dark .login-eyebrow { color:#b8ed7e; }
+@media(max-width:1120px) { .variant-dark .console-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .variant-dark .console-actions { flex-direction:column; align-items:start; } }
+@media(max-width:730px) { .variant-dark .console-shell { display:block; } .variant-dark .console-rail { width:100%; height:auto; position:static; padding:14px 18px; } .variant-dark .console-brand { margin:0 0 9px; } .variant-dark .rail-links { display:grid; grid-template-columns:repeat(2,1fr); } .variant-dark .rail-caption { margin:10px 5px 6px; } .variant-dark .console-rail-sub,.variant-dark .console-footer,.variant-dark .console-chips { display:none; } .variant-dark .console-topbar { padding:12px 20px; } .variant-dark .console-work { padding:24px 17px; } .variant-dark .console-grid,.variant-dark .console-compact { grid-template-columns:1fr; } .variant-dark .console-intro { flex-direction:column; align-items:start; } .variant-dark .console-intro-right { width:100%; flex:0 0 auto; } .variant-dark .console-user .identity { display:none; } }
+
+
+/* Marco común: acceso, modales, tablas y menú móvil de tres plantillas MIT. */
+.shell-overlay { position: fixed; inset: 0; z-index: 1030; background: rgba(12,25,36,.55); border: 0; display: none; width:100%; height:100%; }
+[data-shell-toggle] { cursor: pointer; min-width: 42px; min-height: 40px; font-size: 1.15rem; line-height: 1; }
+body.shell-menu-open .shell-overlay { display: block; }
+.variant-warm .card-header, .variant-dark .card-header, .variant-soft .card-header { gap: .75rem; flex-wrap: wrap; }
+.variant-warm .table-responsive, .variant-dark .table-responsive, .variant-soft .table-responsive { overflow-x: auto; }
+.variant-warm .card, .variant-dark .card, .variant-soft .card { min-width: 0; }
+.variant-warm .dt-container .dt-layout-row, .variant-dark .dt-container .dt-layout-row, .variant-soft .dt-container .dt-layout-row { flex-wrap: wrap; }
+@media print {
+  body.printing-operation { visibility: hidden !important; background: #fff !important; }
+  body.printing-operation #print-modal, body.printing-operation #print-modal * { visibility: visible !important; }
+  body.printing-operation #print-modal { display: block !important; position: fixed !important; inset: 0 !important; z-index: 9999 !important; opacity: 1 !important; overflow: visible !important; color: #000 !important; }
+  body.printing-operation #print-modal .modal-dialog { margin: 0 auto !important; transform: none !important; max-width: 90mm !important; }
+  body.printing-operation #print-modal .modal-content { border: 0 !important; box-shadow: none !important; background: white !important; color: #000 !important; }
+  body.printing-operation #print-modal .modal-header, body.printing-operation #print-modal .modal-footer { display: none !important; }
+  body.printing-operation #print-modal .modal-body { padding: 0 !important; }
+}
+
+
+/* NEXO PARK / estructura AdminLTE 4 con menú lateral izquierda y tema noche. */
+.variant-dark .app-wrapper.console-shell { display: flex; min-height: 100vh; background: #0b141c; }
+.variant-dark .app-sidebar.console-rail { position: sticky; top: 0; left: 0; height: 100vh; width: 258px; flex: 0 0 258px; display: flex; padding: 18px 13px; z-index: 1040; }
+.variant-dark .sidebar-brand { background: transparent !important; min-height: auto; border: 0; }
+.variant-dark .console-brand { margin: 6px 7px 25px; }
+.variant-dark .console-rail-scroll { min-height: 0; overflow-y: auto; }
+.variant-dark .sidebar-menu { display:flex; flex-direction:column; gap:2px; padding:0; margin:0; list-style:none; }
+.variant-dark .sidebar-menu .nav-item { list-style:none; }
+.variant-dark .rail-caption { list-style:none; margin: 21px 12px 7px; }
+.variant-dark .sidebar-menu .nav-link { width:100%; }
+.variant-dark .rail-config summary { cursor:pointer; list-style:none; }
+.variant-dark .rail-config summary::-webkit-details-marker { display:none; }
+.variant-dark .rail-config .rail-nested { padding-left:35px; font-size:.78rem; }
+.variant-dark .app-main.console-main { flex:1; width: auto; max-width: none; min-width:0; display:flex; flex-direction:column; margin:0; }
+.variant-dark .console-topbar { z-index:1020; position:sticky; top:0; min-height:74px; }
+.variant-dark .console-top-left { display:flex; align-items:center; gap:15px; }
+.variant-dark .console-top-left>div { display:flex; flex-direction:column; gap:3px; }
+.variant-dark .console-menu-button { background:#1a3341; border:1px solid #31515c; border-radius:8px; color:#e0fffa; }
+.variant-dark .console-work { flex:1; }
+.variant-dark .table-striped>tbody>tr:nth-child(odd)>td { background:#162b35; }
+.variant-dark .dt-container select, .variant-dark .dt-container input { background:#11222c; color:#e8f3f3; border-color:#31515c; }
+@media(max-width:860px) {
+  .variant-dark .app-sidebar.console-rail { position:fixed; transform: translateX(-105%); transition:transform .2s; }
+  .variant-dark.shell-menu-open .app-sidebar.console-rail { transform: translateX(0); }
+  .variant-dark .console-main { width:100%; }
+  .variant-dark .console-work { padding:22px 16px; }
+  .variant-dark .console-user .identity { display:none; }
+  .variant-dark .console-topbar { padding: 14px 16px; }
+  .variant-dark .console-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .variant-dark .console-chips { display:none; }
+}
+@media(max-width:570px) { .variant-dark .console-grid, .variant-dark .console-compact { grid-template-columns:1fr; } .variant-dark .console-intro { flex-direction:column; align-items:stretch; } .variant-dark .console-intro-right { width:auto; flex:auto; } }
+
+/* Compatibilidad local de componentes Blade previamente usados con Bootstrap. */
+.icon { display:inline-block; width:1.125rem; height:1.125rem; vertical-align:middle; flex-shrink:0; }
+.card-title { font-size:1.035rem; font-weight:700; margin:0; }
+.card-header { min-height:3.5rem; display:flex; align-items:center; }
+.page-pretitle { font-size:.74rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+.modal-blur { backdrop-filter:blur(2px); }
+.bg-orange-lt { background:#fff1e8!important; color:#a34f25!important; }
+.table-vcenter td,.table-vcenter th { vertical-align:middle; }
+.variant-warm .text-secondary, .variant-soft .text-secondary { opacity:.85; }
+.dt-container .dt-layout-row { display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
+.dt-container .dt-layout-cell { min-width:0; }
+@media(max-width:700px) { .dt-container .dt-layout-row { flex-direction:column; align-items:stretch; } }
+
+/* Variables Bootstrap 5 en el tema oscuro; DataTables conserva contraste. */
+.variant-dark .table { --bs-table-bg:#152630; --bs-table-color:#e5f4f5; --bs-table-border-color:#2c424c; --bs-table-striped-bg:#1c313c; --bs-table-striped-color:#e5f4f5; --bs-table-hover-bg:#1c3640; }
+.variant-dark .app-sidebar.console-rail { margin-inline-start:0!important; transform:none; }
+.variant-dark .app-main.console-main { margin-inline-start:0!important; }
+@media(max-width:860px) {
+ .variant-dark .app-sidebar.console-rail { transform:translateX(-105%)!important; }
+ .variant-dark.shell-menu-open .app-sidebar.console-rail { transform:translateX(0)!important; }
+}
